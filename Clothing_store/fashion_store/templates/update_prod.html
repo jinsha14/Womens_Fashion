@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Update Product</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" name="name" class="form-control" value="{{ upt.name }}" required>
+        </div>
+        <div class="form-group">
+            <label>Price:</label>
+            <input type="number" name="price" class="form-control" value="{{ upt.price }}" required>
+        </div>
+        <div class="form-group">
+            <label>Photo:</label>
+            <input type="file" name="photo" class="form-control-file" accept="image/*">
+        </div>
+        <div class="form-group">
+            <label>Size:</label>
+            <input type="text" name="size" class="form-control" value="{{ upt.size }}" required>
+        </div>
+        <div class="form-group">
+            <label>Quantity:</label>
+            <input type="number" name="quantity" class="form-control" value="{{ upt.quantity }}" required>
+        </div>
+<!--        <div class="form-group">-->
+<!--            <label>Category:</label>-->
+<!--            <select name="category" class="form-control" required>-->
+<!--                {% for category in categories %}-->
+<!--                    <option value="{{ category.id }}" {% if category == product.category %}selected{% endif %}>{{ category.name }}</option>-->
+<!--                {% endfor %}-->
+<!--            </select>-->
+<!--        </div>-->
+
+        <button type="submit" class="btn btn-primary">Update Product</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

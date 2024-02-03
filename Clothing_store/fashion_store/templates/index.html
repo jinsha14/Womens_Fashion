@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>romofyi</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- style css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- fevicon -->
+    <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+        media="screen">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="main-layout">
+    <!-- loader -->
+    <div class="loader_bg">
+        <div class="loader"><img src="{% static 'images/loading.gif' %}" alt="#" /></div>
+    </div>
+    <!-- end loader -->
+    <!-- header -->
+    <header>
+        <!-- header inner -->
+        <div class="header">
+            <div class="header_top d_none1">
+                <div class="container">
+                    <div class="row">
+                        <!-- ... (unchanged) ... -->
+                    </div>
+                </div>
+            </div>
+            <div class="header_midil">
+                <div class="container">
+                    <div class="row d_flex">
+                        <!-- ... (unchanged) ... -->
+                    </div>
+                </div>
+            </div>
+            <div class="header_bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                           <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                                 <span class="navbar-toggler-icon"></span>
+                              </button>
+                              <div class="collapse navbar-collapse" id="navbarsExample04">
+                                 <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item active">
+                                       <a class="nav-link" href="index.html">Home</a>
+                                    </li>
+<!--                                    <li class="nav-item">-->
+<!--                                       <a class="nav-link" href="about.html">About</a>-->
+<!--                                    </li>-->
+<!--                                    <li class="nav-item">-->
+<!--                                        <a class="nav-link" href="#">Products</a>-->
+<!--                                    </li>-->
+                                    <li class="nav-item">
+                                       <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+                                    </li>
+                                    <li class="nav-item">
+                                       <a class="nav-link" href="{% url 'user_login' %}">login</a>
+                                    </li>
+<!--                                    <li class="nav-item">-->
+<!--                                       <a class="nav-link" href="{% url 'account' %}">Account</a>-->
+<!--                                    </li>-->
+                                 </ul>
+                              </div>
+                           </nav>
+                        </div>
+<!--                        <div class="col-md-4">-->
+<!--                            <div class="search">-->
+<!--                                <form action="/action_page.php">-->
+<!--                                    <div class="input-group">-->
+<!--                                        <input class="form-control form_sea" type="text" name="email" placeholder="admin123@gmail.com">-->
+<!--                                        <div class="input-group-append">-->
+<!--                                            <button type="submit" class="btn btn-primary email_icon"><i class="fa fa-envelope"></i></button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </form>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- end header inner -->
+    <!-- end header -->
+    <!-- banner -->
+    <section class="banner_main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="text-bg">
+                        <h1> <span class="blodark"> URBAN COWGIRL COUTURE </span> <br>2024</h1>
+                        <p>A DIGITAL SHOWCASE OF WESTERN TRENDS </p>
+<!--                        <a class="read_more" href="#">Shop now</a>-->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="ban_img">
+                        <figure><img src="{% static 'images/bck.png' %}" alt="#"/></figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end banner -->
+    <!-- six_box section -->
+<!--    <div class="six_box">-->
+<!--        <div class="container-fluid">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-2 col-sm-4 pa_left">-->
+<!--                    <div class="six_probpx yellow_bg">-->
+<!--                        <i><img src="{% static 'images/shoes.png' %}" alt="#"/></i>-->
+<!--                        <span>Shoes</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-2 col-sm-4 pa_left">-->
+<!--                    <div class="six_probpx bluedark_bg">-->
+<!--                        <i><img src="{% static 'images/underwear.png' %}" alt="#"/></i>-->
+<!--                        <span>underwear</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-2 col-sm-4 pa_left">-->
+<!--                    <div class="six_probpx yellow_bg">-->
+<!--                        <i><img src="{% static 'images/pent.png' %}" alt="#"/></i>-->
+<!--                        <span>Pante & socks</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-2 col-sm-4 pa_left">-->
+<!--                    <div class="six_probpx bluedark_bg">-->
+<!--                        <i><img src="{% static 'images/t_shart.png' %}" alt="#"/></i>-->
+<!--                        <span>T-shirt & tankstop</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-2 col-sm-4 pa_left">-->
+<!--                    <div class="six_probpx yellow_bg">-->
+<!--                        <i><img src="{% static 'images/jakit.png' %}" alt="#"/></i>-->
+<!--                        <span>cardigans & jumpers</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-2 col-sm-4 pa_left">-->
+<!--                    <div class="six_probpx bluedark_bg">-->
+<!--                        <i><img src="{% static 'images/helbet.png' %}" alt="#"/></i>-->
+<!--                        <span>Top & hat</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- sidebar -->
+    <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+    <!-- Uncomment the following lines if you're not using Bootstrap's bundled JS files -->
+    <!--
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>

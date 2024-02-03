@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessories List</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- Add Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Additional custom styles can be added here */
+        .img-zoomable {
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .img-fullscreen {
+            width: 50%;
+            height: 50%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="mt-5 mb-4">Accessories</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for accessory in accessories %}
+                <tr>
+                    <td>
+                        {% if accessory.photo %}
+                            <img
+                                src="{{ accessory.photo.url }}"
+                                class="img-thumbnail img-zoomable"
+                                alt="{{ accessory.name }}"
+                                width="100"
+                                height="100"
+                                onclick="openFullscreen(this)">
+                        {% else %}
+                            <!-- You can add a placeholder image here if there is no accessory photo -->
+                            <!--<img src="{% static 'img/placeholder.jpg' %}" class="img-thumbnail img-zoomable" alt="Placeholder" width="100" height="100">-->
+                        {% endif %}
+                    </td>
+                    <td>{{ accessory.name }}</td>
+                    <td>${{ accessory.price }}</td>
+                    <td>
+                        <form method="post" action="{% url 'add_to_cart' accessory.id %}">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input type="number" name="quantity" class="form-control" value="1" min="1">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary add-to-cart">
+                                        <i class="fa fa-shopping-cart"></i> Add to cart
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Add Bootstrap JS (Optional, only if you need Bootstrap JavaScript features) -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<script>
+    function openFullscreen(img) {
+        if (img.requestFullscreen) {
+            img.requestFullscreen();
+        } else if (img.mozRequestFullScreen) { /* Firefox */
+            img.mozRequestFullScreen();
+        } else if (img.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+            img.webkitRequestFullscreen();
+        } else if (img.msRequestFullscreen) { /* IE/Edge */
+            img.msRequestFullscreen();
+        }
+    }
+</script>
+
+</body>
+</html>

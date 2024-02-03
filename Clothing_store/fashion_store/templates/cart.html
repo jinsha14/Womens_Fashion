@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Shopping Cart{% endblock %}</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- Add your custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- Add Font Awesome CSS if needed -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+
+        img {
+            max-width: 50px;
+            max-height: 50px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 576px) {
+            table {
+                font-size: 12px;
+            }
+
+            img {
+                max-width: 30px;
+                max-height: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Shopping Cart</h2>
+
+        {% if cart_items %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Image</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cart_item in cart_items %}
+                        <tr>
+                            <td>{{ cart_item.product.name }}</td>
+                            <td><img src="{{ cart_item.product.photo.url }}" alt="{{ cart_item.product.name }}"></td>
+                            <td>
+                                <form method="post" action="{% url 'update_cart' cart_item.product.id %}">
+                                    {% csrf_token %}
+                                    <input type="number" name="quantity" value="{{ cart_item.quantity }}" min="1">
+                                    <button type="submit">Update</button>
+                                </form>
+                            </td>
+                            <td>{{ cart_item.product.price }}</td>
+                            <td>{{ cart_item.calculate_total }} Rs</td>
+                            <td><a href="{% url 'remove_from_cart' cart_item.product.id %}" class="text-danger">Remove</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4"><strong>Total:</strong></td>
+                        <td>{{ total_price }} Rs</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        {% else %}
+            <p>Your shopping cart is empty.</p>
+        {% endif %}
+    </div>
+    <form action="{% url 'checkout' %}"  class="text-center mt-3">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Order</button>
+    </form>
+
+    <!-- Add Bootstrap JS (Optional, only if you need Bootstrap JavaScript features) -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- Add your custom JavaScript -->
+    <script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+
+</html>

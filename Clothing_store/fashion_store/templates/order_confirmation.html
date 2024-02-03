@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url('your-background-image.jpg'); /* Replace 'your-background-image.jpg' with the actual file path or URL */
+            background-size: cover;
+            background-position: center;
+            color: #fff; /* Set text color to white for better readability on a dark background */
+        }
+
+        header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            text-align: center;
+            padding: 50px;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #4CAF50; /* Green color for the button */
+            color: #fff;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <!-- Add your CSS styles or external links here if needed -->
+</head>
+
+<body>
+    <header>
+        <h1>Order Success</h1>
+    </header>
+
+    <main>
+        <p>Thank you for your order!</p>
+        <a href="{% url 'index' %}">Back To Home</a>
+    </main>
+
+    <footer>
+        <!-- Add footer content if necessary -->
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+<!--            background: url("{% static 'images/login/bl.avif' %}") center/cover;-->
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #fff;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            max-width: 400px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        input, select {
+            width: 100%;
+            padding: 6px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 7px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<!--   <h2>Edit Your Profile</h2>-->
+    <form method="post">
+        {% csrf_token %}
+
+        <label>First Name:</label>
+        <input type="text" name="firstname" value="{{ ed.first_name }}" required>
+
+        <label>Last Name:</label>
+        <input type="text" name="lastname" value="{{ ed.last_name }}" required>
+
+<!--        <label>Phone:</label>-->
+<!--        <input type="text" name="phone" value="{{ ed.phone }}" required>-->
+
+        <label>Email:</label>
+        <input type="email" name="email" value="{{ ed.email }}" required>
+
+        <label>Username:</label>
+        <input type="text" name="username" value="{{ ed.username }}" required>
+
+        <label>Password (leave blank to keep current):</label>
+        <input type="password" name="password">
+
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>

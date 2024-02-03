@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- Add Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Additional custom styles can be added here */
+        .img-zoomable {
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .img-fullscreen {
+            width: 50%;
+            height: 50%;
+            object-fit: contain;
+        }
+
+        .action-icons {
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .add-product-btn {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="mt-5 mb-4">All Products</h2>
+
+    <!-- Product Add Button -->
+    <button class="btn btn-success add-product-btn" data-toggle="modal" data-target="#addProductModal">
+        <i class="fas fa-plus"></i> Add Product
+    </button>
+
+    <!-- Product Add Modal -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add your product add form here -->
+                    <form method="post" action="{% url 'add_product' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <!-- Add form fields for product details -->
+                        <button type="submit"  class="btn btn-primary">Add Product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Table -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Size</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in all_products %}
+                <tr>
+                    <td>
+                        {% if product.photo %}
+                            <img
+                                src="{{ product.photo.url }}"
+                                class="img-thumbnail img-zoomable"
+                                alt="{{ product.name }}"
+                                width="100"
+                                height="100"
+                                onclick="openFullscreen(this)"
+                            >
+                        {% else %}
+                            <!-- You can add a placeholder image here if there is no product photo -->
+                            <!--<img src="{% static 'img/placeholder.jpg' %}" class="img-thumbnail img-zoomable" alt="Placeholder" width="100" height="100">-->
+                        {% endif %}
+                    </td>
+                    <td>{{ product.name }}</td>
+                    <td>${{ product.price }}</td>
+                    <td>{{ product.size }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>
+                        <!-- Update Form -->
+                        <form method="POST" action="{% url 'update_product' product_id=product.id %}" enctype="multipart/form-data">
+                         {% csrf_token %}
+                        <button type="submit" class="action-icons" title="Update">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        </form>
+                        <!-- Delete Form -->
+                        <form method="POST" action="{% url 'delete_product' product_id=product.id %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <button type="submit" class="action-icons" title="Delete" onclick="console.log('Delete button clicked');">
+                                <i class="fas fa-trash"></i>
+                            </button>
+
+                        </form>
+<!--                        -->
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Add Bootstrap JS (Optional, only if you need Bootstrap JavaScript features) -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<script>
+    function openFullscreen(img) {
+        if (img.requestFullscreen) {
+            img.requestFullscreen();
+        } else if (img.mozRequestFullScreen) { /* Firefox */
+            img.mozRequestFullScreen();
+        } else if (img.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+            img.webkitRequestFullscreen();
+        } else if (img.msRequestFullscreen) { /* IE/Edge */
+            img.msRequestFullscreen();
+        }
+    }
+</script>
+
+</body>
+</html>
